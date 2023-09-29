@@ -1,1 +1,19 @@
-style
+.game-board {
+  width: 400px;
+  height: 400px;
+  border: 1px solid #000;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+}
+
+.snake-head {
+  background-color: red;
+}
+
+.snake-body {
+  background-color: green;
+}
+
+.food {
+  background-color: yellow;
+}
