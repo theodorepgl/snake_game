@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const gameBoard = document.getElementById('game-board');
     const scoreDisplay = document.getElementById('score');
+    const gameOverDiv = document.getElementById('game-over');
+    const finalScore = document.getElementById('final-score');
+    const restartBtn = document.getElementById('restart-btn');
     const gridSize = 20;
     const gridCount = gridSize * gridSize;
     const cells = [];
@@ -82,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (checkCollision()) {
             clearInterval(interval);
-            alert('Game Over! Final Score ' + score);
+            showGameOver();
         }
     }
 
@@ -140,9 +143,30 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreDisplay.textContent = 'Score: ' + score;
     }
 
+    function showGameOver() {
+        gameOverDiv.style.display = 'block';
+        finalScore.textContent = 'Final Score' + score;
+    }
+
+    function restartGame() {
+        snake = [2, 1, 0];
+        direction = 1;
+        foodIndex = 0;
+        score = 0;
+        intervalTime = 500;
+        interval = null;
+        eraseSnake();
+        drawSnake();
+        generateFood();
+        updateScore();
+        gameOverDiv.style.display = 'none';
+        interval = setInterval(moveSnake, intervalTime);
+    }
+
     createGameBoard();
     drawSnake();
     generateFood();
     interval = setInterval(moveSnake, intervalTime);
     document.addEventListener('keydown', changeDirection);
+    restartBtn.addEventListener('click', restartGame);
 });

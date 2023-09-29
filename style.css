@@ -7,13 +7,39 @@
 }
 
 .snake-head {
-  background-color: red;
+  
 }
 
 .snake-body {
-  background-color: green;
+  background-color: cornflowerblue;
 }
 
 .food {
-  background-color: yellow;
+  background-color: red;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+h1, h2, p {
+  text-align: center;
+}
+
+.game-board {
+  margin-bottom: 20px;
+}
+
+#game-over {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#restart-btn {
+  margin-top: 10px;
 }
