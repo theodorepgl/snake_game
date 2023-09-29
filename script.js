@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const gameBoard = document.getElementById('game-board');
+    const scoreDisplay = document.getElementById('score');
     const gridSize = 20;
     const gridCount = gridSize * gridSize;
     const cells = [];
@@ -7,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let snake = [2, 1, 0];
     let direction = 1;
     let foodIndex = 0;
+    let score = 0
     let intervalTime = 500;
     let interval = null;
 
@@ -75,11 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
             snake.push(tail);
             generateFood();
             increaseSpeed();
+            updateScore();
         }
 
         if (checkCollision()) {
             clearInterval(interval);
-            alert('Game Over!');
+            alert('Game Over! Final Score ' + score);
         }
     }
 
@@ -130,6 +133,11 @@ document.addEventListener('DOMContentLoaded', () => {
         intervalTime *= 0.9;
         clearInterval(interval);
         interval = setInterval(moveSnake, intervalTime);
+    }
+
+    function updateScore() {
+        score++;
+        scoreDisplay.textContent = 'Score: ' + score;
     }
 
     createGameBoard();
